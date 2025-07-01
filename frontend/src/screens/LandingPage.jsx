@@ -15,7 +15,7 @@ function Home() {
 				</nav>
 			</header>
 
-			<main className="mt-8">
+			<main className="mt-8 flex flex-col items-center">
 				<h1 className="text-2xl font-semibold mb-4">Welcome to Sannata</h1>
 
 				{!showSignup ? <LoginSection onSwitch={() => setShowSignup(true)} /> : <SignupFlow />}
