@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Button from "../Button";
+import Input from "../Input";
 
 export default function StepEmail({ next, update }) {
 	const [email, setEmail] = useState("");
@@ -18,21 +19,15 @@ export default function StepEmail({ next, update }) {
 			<p className="text-sm text-muted mb-2">Let's get you in</p>
 			<h2 className="text-xl font-semibold mb-4">What's your email?</h2>
 			<form
-				onSubmit={(e) => {
+				onClick={(e) => {
 					e.preventDefault();
 					handleNext();
 				}}
 			>
-				<input
-					type="email"
-					placeholder="Enter your email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					className="w-full border p-2 rounded mb-1"
-				/>
+				<Input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
 				{error && <p className="text-red-500 text-sm mb-2">{error}</p>}
 
-				<Button type="submit" onClick={handleNext} className="text-white px-4 py-2 rounded w-full">
+				<Button type="submit" className="text-white px-4 py-2 rounded w-full">
 					Next
 				</Button>
 			</form>

@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Button from "./Button";
+import Input from "./Input";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginSection({ onSwitch }) {
+	const navigate = useNavigate();
+
 	const [emailOrUsername, setEmailOrUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
@@ -19,27 +23,30 @@ export default function LoginSection({ onSwitch }) {
 
 	return (
 		<div>
-			<h2 className="text-xl mb-2">Login</h2>
+			<Button onClick={() => navigate("/")} className="text-sm mb-4 block my-4">
+				← Back
+			</Button>
+
+			<h2 className="text-5xl mb-2">Login</h2>
 			<form
 				onSubmit={(e) => {
 					e.preventDefault();
 					handleLogin();
 				}}
-				className="mb-2 space-y-6"
+				className="w-full mb-2 space-y-6"
 			>
 				<div>
-					<label htmlFor="login-id" className="block text-sm/6 font-medium text-gray-900 cursor-pointer mr-2">
-						Username / Email
+					<label htmlFor="login-id" className="block text-sm/6 font-bold text-gray-900 cursor-pointer mr-2">
+						username or email
 					</label>
-					<input
+					<Input
 						id="login-id"
 						name="login-id"
 						type="email"
-						placeholder="Username or Email"
+						placeholder="your_username or abc@xyz.com"
 						autoComplete="email"
 						value={emailOrUsername}
 						onChange={(e) => setEmailOrUsername(e.target.value)}
-						className="block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
 					/>
 				</div>
 
@@ -54,7 +61,7 @@ export default function LoginSection({ onSwitch }) {
 							</a>
 						</div>
 					</div>
-					<input
+					<Input
 						id="password"
 						name="password"
 						type="password"
@@ -63,7 +70,6 @@ export default function LoginSection({ onSwitch }) {
 						autoComplete="current-password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
-						className="block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
 					/>
 				</div>
 

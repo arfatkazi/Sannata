@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
+@font-face {
+	font-family: "Urbanist";
+	src: url("/fonts/Urbanist-VariableFont_wght.ttf") format("truetype");
+}
+
 @theme {
-	--color-primary: #3b82f6;
+	--color-primary: #d43027;
 	--color-secondary: #6366f1;
 	--color-success: #22c55e;
 	--color-danger: #ef4444;
@@ -19,4 +24,6 @@
 	--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 	--font-poppins: Poppins, sans-serif;
+
+	--font-urbanist: "Urbanist", "sans-serif";
 }
