@@ -32,7 +32,7 @@ export default function StepEmail({ next, update }) {
 				/>
 				{error && <p className="text-red-500 text-sm mb-2">{error}</p>}
 
-				<Button type="submit" onClick={handleNext} className="bg-[--color-brand] text-white px-4 py-2 rounded w-full">
+				<Button type="submit" onClick={handleNext} className="text-white px-4 py-2 rounded w-full">
 					Next
 				</Button>
 			</form>

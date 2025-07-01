@@ -60,7 +60,7 @@ export default function StepPassword({ next, update }) {
 					</ul>
 				</div>
 
-				<Button type="submit" onClick={handleNext} className="bg-[--color-brand] text-white px-4 py-2 rounded w-full">
+				<Button type="submit" onClick={handleNext} className=" text-white px-4 py-2 rounded w-full">
 					Next
 				</Button>
 			</form>
