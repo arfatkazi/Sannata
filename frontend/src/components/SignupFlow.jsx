@@ -1,55 +1,59 @@
 import { useState } from "react";
-
-import StepName from "./onboarding_steps/StepName";
-import StepEmail from "./onboarding_steps/StepEmail";
-import StepVerify from "./onboarding_steps/StepVerify";
-import StepPassword from "./onboarding_steps/StepPassword";
-import StepUsername from "./onboarding_steps/StepUsername";
-import StepProfilePic from "./onboarding_steps/StepProfilePic";
-import StepWelcome from "./onboarding_steps/StepWelcome";
-import ProgressBar from "./ProgressBar";
 import { useNavigate } from "react-router-dom";
+
+import ProgressBar from "./ProgressBar";
+import StepEmail from "./onboarding_steps/StepEmail";
+import StepPassword from "./onboarding_steps/StepPassword";
+import StepVerify from "./onboarding_steps/StepVerify";
+import StepWelcome from "./onboarding_steps/StepWelcome";
+import StepNameUsername from "./onboarding_steps/StepNameUsername";
 
 import Button from "./Button";
 
 export default function SignupFlow() {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	const [step, setStep] = useState(1);
-	const [formData, setFormData] = useState({}); // will collect all data
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({});
 
-	const goNext = () => setStep((prev) => prev + 1);
-	const goBack = () => {
-		if (step <= 1) {
-			navigate("/");
-		} else {
-			setStep((prev) => prev - 1);
-		}
-	};
+  const goNext = () => setStep((prev) => prev + 1);
+  const goBack = () => {
+    if (step <= 1) {
+      navigate("/");
+    } else {
+      setStep((prev) => prev - 1);
+    }
+  };
 
-	const updateData = (newData) => setFormData((prev) => ({ ...prev, ...newData }));
+  const updateData = (newData) =>
+    setFormData((prev) => ({ ...prev, ...newData }));
 
-	console.log(formData);
-	console.log(step);
+  return (
+    <div className="max-w-md mx-auto p-4">
+      <h1 className="text-3xl text-center mb-4">Create New Account</h1>
 
-	return (
-		<div className="max-w-md mx-auto p-4">
-			<h1>Signup</h1>
+      <Button onClick={() => navigate("/")}>Go to "/"</Button>
 
-			{step !== 6 && (
-				<Button onClick={goBack} className="text-sm mb-4 block my-4">
-					← Back
-				</Button>
-			)}
+      {step < 7 && (
+        <Button onClick={goBack} className="text-sm mb-4 block my-4">
+          ← Back
+        </Button>
+      )}
 
-			<ProgressBar step={step} total={5} />
-			{step === 1 && <StepName next={goNext} update={updateData} />}
-			{step === 2 && <StepEmail next={goNext} update={updateData} />}
-			{step === 2.5 && <StepVerify next={goNext} />}
-			{step === 3 && <StepPassword next={goNext} update={updateData} />}
-			{step === 4 && <StepUsername next={goNext} update={updateData} />}
-			{step === 5 && <StepProfilePic next={goNext} update={updateData} />}
-			{step === 6 && <StepWelcome />}
-		</div>
-	);
+      {step >= 1 && (
+        <Button onClick={goNext} className="text-sm mb-4 block my-4">
+          Next →
+        </Button>
+      )}
+
+      <ProgressBar step={step} total={5} />
+      {step === 1 && <StepEmail next={goNext} update={updateData} />}
+      {step === 2 && <StepVerify next={goNext} formData={formData} />}
+      {step === 3 && <StepNameUsername next={goNext} update={updateData} />}
+      {step === 4 && <StepPassword next={goNext} update={updateData} />}
+      {step === 5 && <StepWelcome formData={formData} />}
+
+      <div>{JSON.stringify(formData)}</div>
+    </div>
+  );
 }
