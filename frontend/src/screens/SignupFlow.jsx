@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import ProgressBar from "./ProgressBar";
-import StepEmail from "./onboarding_steps/StepEmail";
-import StepPassword from "./onboarding_steps/StepPassword";
-import StepVerify from "./onboarding_steps/StepVerify";
-import StepWelcome from "./onboarding_steps/StepWelcome";
-import StepNameUsername from "./onboarding_steps/StepNameUsername";
+import ProgressBar from "../components/ProgressBar";
+import StepEmail from "../components/onboarding_steps/StepEmail";
+import StepNameUsername from "../components/onboarding_steps/StepNameUsername";
+import StepPassword from "../components/onboarding_steps/StepPassword";
+import StepVerify from "../components/onboarding_steps/StepVerify";
+import StepWelcome from "../components/onboarding_steps/StepWelcome";
 
-import Button from "./Button";
+import Button from "../components/Button";
 
 export default function SignupFlow() {
   const navigate = useNavigate();

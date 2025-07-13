@@ -1,9 +1,18 @@
-import React from 'react'
+import axios from "axios";
+import { useEffect } from "react";
 
 function Home() {
-  return (
-    <div>Home</div>
-  )
+  useEffect(() => {
+    axios
+      .get("https://ipwho.is/")
+      .then((res) => {
+        const { country, region, city, latitude, longitude } = res.data;
+        console.log({ country, region, city, latitude, longitude });
+      })
+      .catch(console.error);
+  }, []);
+
+  return <div>Home</div>;
 }
 
-export default Home
+export default Home;
